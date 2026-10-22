@@ -1,4 +1,4 @@
-# Catlas App
+# Catlas
 
 Catlas (Campus Cat Care Network) is a Flutter app we are developing for CS310. It aims to help students and staff coordinate the care of stray cats on campus.
 
