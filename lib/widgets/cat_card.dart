@@ -1,0 +1,54 @@
+import 'package:material_ui/material_ui.dart';
+
+import '../data/cat.dart';
+import '../theme/app_spacing.dart';
+import '../theme/app_text_styles.dart';
+
+class CatCard extends StatelessWidget {
+  const CatCard({super.key, required this.cat});
+
+  final Cat cat;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: AppSpacing.medium),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    cat.name,
+                    style: AppTextStyles.itemTitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: AppSpacing.tiny),
+                  Text(
+                    '${cat.zone} · Seen ${cat.lastSeen}',
+                    style: AppTextStyles.itemSubtitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: AppSpacing.medium),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(AppSpacing.radius),
+              child: Image.asset(
+                cat.photo,
+                width: AppSpacing.thumbnail,
+                height: AppSpacing.thumbnail,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

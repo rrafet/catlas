@@ -42,6 +42,18 @@ class AppTextStyles {
     color: AppColors.textPrimary,
   );
 
+  static const TextStyle itemTitle = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 18,
+    color: AppColors.textPrimary,
+  );
+
+  static const TextStyle itemSubtitle = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 15,
+    color: AppColors.textSecondary,
+  );
+
   static const TextStyle button = TextStyle(
     fontFamily: fontFamily,
     fontSize: 17,
