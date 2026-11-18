@@ -49,7 +49,7 @@ class _PickLocationScreenState extends State<PickLocationScreen> {
                       child: const Icon(
                         Icons.location_on,
                         size: _pinSize,
-                        color: AppColors.textPrimary,
+                        color: AppColors.accent,
                       ),
                     ),
                   ),

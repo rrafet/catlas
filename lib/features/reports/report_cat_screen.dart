@@ -6,6 +6,7 @@ import '../../theme/app_colors.dart';
 import '../../theme/app_spacing.dart';
 import '../../theme/app_text_styles.dart';
 import '../../widgets/app_text_field.dart';
+import '../../widgets/cat_photo.dart';
 import '../../widgets/primary_button.dart';
 import '../map/pick_location_screen.dart';
 
@@ -41,6 +42,7 @@ class _ReportCatScreenState extends State<ReportCatScreen> {
           children: [
             for (final cat in placeholderCats)
               ListTile(
+                leading: CatPhoto(photo: cat.photo, size: 40),
                 title: Text(cat.name, style: AppTextStyles.itemTitle),
                 subtitle: Text(cat.zone, style: AppTextStyles.itemSubtitle),
                 onTap: () => Navigator.pop(context, cat),

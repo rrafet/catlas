@@ -56,6 +56,14 @@ const List<Cat> placeholderCats = [
     photo: 'assets/images/cats/SU-005.jpg',
     mapPosition: Offset(0.15, 0.90),
   ),
+  Cat(
+    id: 'SU-006',
+    name: 'Pamuk',
+    zone: 'Library',
+    lastSeen: 'yesterday',
+    photo: 'https://raw.githubusercontent.com/rrafet/catlas/main/docs/images/SU-006.jpg',
+    mapPosition: Offset(0.30, 0.70),
+  ),
 ];
 
 const List<Station> placeholderStations = [

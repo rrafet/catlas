@@ -3,7 +3,7 @@ import 'package:material_ui/material_ui.dart';
 import 'app_colors.dart';
 
 class AppTextStyles {
-  static const String? fontFamily = null;
+  static const String fontFamily = 'Inter';
 
   static const TextStyle title = TextStyle(
     fontFamily: fontFamily,

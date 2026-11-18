@@ -6,6 +6,6 @@ class AppSpacing {
   static const double pagePadding = 24;
 
   static const double buttonPaddingVertical = 18;
-  static const double radius = 4;
+  static const double radius = 12;
   static const double thumbnail = 64;
 }

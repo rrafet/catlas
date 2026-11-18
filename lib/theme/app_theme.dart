@@ -31,7 +31,7 @@ class AppTheme {
         borderSide: BorderSide(color: AppColors.divider),
       ),
       focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: AppColors.textPrimary, width: 1.5),
+        borderSide: BorderSide(color: AppColors.accent, width: 1.5),
       ),
       errorBorder: UnderlineInputBorder(
         borderSide: BorderSide(color: AppColors.error),
@@ -48,6 +48,20 @@ class AppTheme {
       margin: EdgeInsets.zero,
       shape: Border(bottom: BorderSide(color: AppColors.divider)),
     ),
+    dialogTheme: DialogThemeData(
+      backgroundColor: AppColors.background,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppSpacing.radius),
+      ),
+    ),
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: AppColors.background,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(AppSpacing.radius),
+        ),
+      ),
+    ),
     dividerTheme: const DividerThemeData(
       color: AppColors.divider,
       thickness: 1,
@@ -61,7 +75,7 @@ class AppTheme {
       iconTheme: WidgetStateProperty.resolveWith(
         (states) => IconThemeData(
           color: states.contains(WidgetState.selected)
-              ? AppColors.textPrimary
+              ? AppColors.accent
               : AppColors.textSecondary,
         ),
       ),

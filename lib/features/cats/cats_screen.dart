@@ -9,6 +9,26 @@ import '../../widgets/cat_card.dart';
 
 const List<String> _zones = ['All', 'FENS', 'FASS', 'Library', 'Dorms'];
 
+String _normalize(String text) {
+  const replacements = {
+    'ç': 'c',
+    'Ç': 'c',
+    'ğ': 'g',
+    'Ğ': 'g',
+    'ı': 'i',
+    'İ': 'i',
+    'ö': 'o',
+    'Ö': 'o',
+    'ş': 's',
+    'Ş': 's',
+    'ü': 'u',
+    'Ü': 'u',
+  };
+  var result = text;
+  replacements.forEach((from, to) => result = result.replaceAll(from, to));
+  return result.toLowerCase();
+}
+
 class CatsScreen extends StatefulWidget {
   const CatsScreen({super.key});
 
@@ -22,10 +42,10 @@ class _CatsScreenState extends State<CatsScreen> {
   String _selectedZone = 'All';
 
   List<Cat> get _visibleCats {
-    final query = _query.toLowerCase();
+    final query = _normalize(_query);
     return _cats
         .where((cat) => _selectedZone == 'All' || cat.zone == _selectedZone)
-        .where((cat) => cat.name.toLowerCase().contains(query))
+        .where((cat) => _normalize(cat.name).contains(query))
         .toList();
   }
 
@@ -121,7 +141,7 @@ class _ZoneTab extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: selected ? AppColors.textPrimary : Colors.transparent,
+              color: selected ? AppColors.accent : Colors.transparent,
               width: 2,
             ),
           ),

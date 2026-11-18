@@ -13,6 +13,9 @@ class AppTextField extends StatelessWidget {
     this.keyboardType,
     this.textInputAction,
     this.maxLines = 1,
+    this.helperText,
+    this.fieldKey,
+    this.onChanged,
   });
 
   final String label;
@@ -22,6 +25,9 @@ class AppTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final int maxLines;
+  final String? helperText;
+  final GlobalKey<FormFieldState<String>>? fieldKey;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +37,15 @@ class AppTextField extends StatelessWidget {
         Text(label.toUpperCase(), style: AppTextStyles.label),
         const SizedBox(height: AppSpacing.small),
         TextFormField(
+          key: fieldKey,
           controller: controller,
+          onChanged: onChanged,
           validator: validator,
           obscureText: obscureText,
           keyboardType: keyboardType,
           textInputAction: textInputAction,
           maxLines: maxLines,
+          decoration: InputDecoration(helperText: helperText),
         ),
       ],
     );
