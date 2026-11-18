@@ -16,6 +16,13 @@ class AppTheme {
       onSurface: AppColors.textPrimary,
       error: AppColors.error,
     ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.background,
+      foregroundColor: AppColors.textPrimary,
+      elevation: 0,
+      scrolledUnderElevation: 0,
+      surfaceTintColor: Colors.transparent,
+    ),
     textTheme: const TextTheme(bodyMedium: AppTextStyles.body),
     inputDecorationTheme: const InputDecorationTheme(
       isDense: true,

@@ -57,6 +57,7 @@ flutter:
 
   assets:
     - assets/images/catlas_icon.png
+    - assets/images/campus_map.png
     - assets/images/cats/
 
   # To add assets to your application, add an assets section, like this:
