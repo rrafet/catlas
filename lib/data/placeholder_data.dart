@@ -74,26 +74,45 @@ final List<Cat> placeholderCats = [
   ),
 ];
 
-const List<Station> placeholderStations = [
+final List<Station> placeholderStations = [
   Station(
     id: 'ST-001',
-    name: 'UC Garden',
-    mapPosition: Offset(0.55, 0.25),
-    lastFood: '3 h ago',
-    lastWater: '1 h ago',
+    name: 'A6 Entrance',
+    area: 'Dorms',
+    mapPosition: const Offset(0.12, 0.76),
+    foodHours: 22,
+    waterHours: 9,
   ),
   Station(
     id: 'ST-002',
-    name: 'FENS Entrance',
-    mapPosition: Offset(0.78, 0.42),
-    lastFood: '9 h ago',
-    lastWater: '5 h ago',
+    name: 'FASS Steps',
+    area: 'FASS',
+    mapPosition: const Offset(0.86, 0.66),
+    foodHours: 18,
+    waterHours: 20,
   ),
   Station(
     id: 'ST-003',
-    name: 'SL Corner',
-    mapPosition: Offset(0.12, 0.76),
-    lastFood: '26 h ago',
-    lastWater: '14 h ago',
+    name: 'FENS Entrance',
+    area: 'FENS',
+    mapPosition: const Offset(0.78, 0.42),
+    foodHours: 14,
+    waterHours: 6,
+  ),
+  Station(
+    id: 'ST-004',
+    name: 'Dorm A Courtyard',
+    area: 'Dorms',
+    mapPosition: const Offset(0.30, 0.88),
+    foodHours: 7,
+    waterHours: 3,
+  ),
+  Station(
+    id: 'ST-005',
+    name: 'University Center Entrance',
+    area: 'UC',
+    mapPosition: const Offset(0.55, 0.25),
+    foodHours: 0,
+    waterHours: 0,
   ),
 ];

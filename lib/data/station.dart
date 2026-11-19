@@ -1,17 +1,21 @@
 import 'dart:ui';
 
 class Station {
-  const Station({
+  Station({
     required this.id,
     required this.name,
+    required this.area,
     required this.mapPosition,
-    required this.lastFood,
-    required this.lastWater,
+    required this.foodHours,
+    required this.waterHours,
   });
 
   final String id;
   final String name;
+  final String area;
   final Offset mapPosition;
-  final String lastFood;
-  final String lastWater;
+
+  // Hours since the last logged refill.
+  int foodHours;
+  int waterHours;
 }

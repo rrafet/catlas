@@ -62,9 +62,9 @@ class MapScreen extends StatelessWidget {
         children: [
           Text(station.name, style: AppTextStyles.heading),
           const SizedBox(height: AppSpacing.small),
-          Text('Food: ${station.lastFood}', style: AppTextStyles.body),
+          Text('Food: ${station.foodHours} h', style: AppTextStyles.body),
           const SizedBox(height: AppSpacing.tiny),
-          Text('Water: ${station.lastWater}', style: AppTextStyles.body),
+          Text('Water: ${station.waterHours} h', style: AppTextStyles.body),
         ],
       ),
     );
