@@ -36,7 +36,7 @@ class CatProfileScreen extends StatelessWidget {
                     Text(cat.zone, style: AppTextStyles.itemSubtitle),
                     const SizedBox(height: AppSpacing.medium),
                     Text(
-                      'Last seen ${cat.lastSeen} near ${cat.zone}.',
+                      'Last seen ${timeAgo(cat.lastSeen)} near ${cat.lastSeenPlace}.',
                       style: AppTextStyles.body,
                     ),
                   ],

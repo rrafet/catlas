@@ -40,7 +40,7 @@ class MapScreen extends StatelessWidget {
                 Text(cat.name, style: AppTextStyles.heading),
                 const SizedBox(height: AppSpacing.tiny),
                 Text(
-                  '${cat.zone} · Seen ${cat.lastSeen}',
+                  '${cat.zone} · Seen ${timeAgo(cat.lastSeen)}',
                   style: AppTextStyles.itemSubtitle,
                 ),
               ],

@@ -32,7 +32,7 @@ class CatCard extends StatelessWidget {
                     ),
                     const SizedBox(height: AppSpacing.tiny),
                     Text(
-                      '${cat.zone} · Seen ${cat.lastSeen}',
+                      '${cat.zone} · Seen ${timeAgo(cat.lastSeen)}',
                       style: AppTextStyles.itemSubtitle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

@@ -15,54 +15,62 @@ const Map<String, Offset> campusSpots = {
   'SL': Offset(0.06, 0.82),
 };
 
-const List<Cat> placeholderCats = [
+final DateTime _now = DateTime.now();
+
+final List<Cat> placeholderCats = [
   Cat(
     id: 'SU-001',
     name: 'Balım',
     zone: 'Library',
-    lastSeen: '40 min ago',
+    lastSeen: _now.subtract(const Duration(minutes: 40)),
+    lastSeenPlace: 'Library',
     photo: 'assets/images/cats/SU-001.jpg',
-    mapPosition: Offset(0.20, 0.55),
+    mapPosition: const Offset(0.20, 0.55),
   ),
   Cat(
     id: 'SU-002',
     name: 'Ebru',
     zone: 'FENS',
-    lastSeen: '2 h ago',
+    lastSeen: _now.subtract(const Duration(hours: 2)),
+    lastSeenPlace: 'FENS',
     photo: 'assets/images/cats/SU-002.jpg',
-    mapPosition: Offset(0.88, 0.45),
+    mapPosition: const Offset(0.88, 0.45),
   ),
   Cat(
     id: 'SU-003',
     name: 'Hero',
     zone: 'FASS',
-    lastSeen: '3 h ago',
+    lastSeen: _now.subtract(const Duration(hours: 3)),
+    lastSeenPlace: 'FASS',
     photo: 'assets/images/cats/SU-003.jpg',
-    mapPosition: Offset(0.85, 0.80),
+    mapPosition: const Offset(0.85, 0.80),
   ),
   Cat(
     id: 'SU-004',
     name: 'Zeytin',
     zone: 'Dorms',
-    lastSeen: '5 h ago',
+    lastSeen: _now.subtract(const Duration(hours: 5)),
+    lastSeenPlace: 'Dorms',
     photo: 'assets/images/cats/SU-004.jpg',
-    mapPosition: Offset(0.40, 0.30),
+    mapPosition: const Offset(0.40, 0.30),
   ),
   Cat(
     id: 'SU-005',
     name: 'Köpük',
     zone: 'Dorms',
-    lastSeen: '8 h ago',
+    lastSeen: _now.subtract(const Duration(hours: 8)),
+    lastSeenPlace: 'Dorms',
     photo: 'assets/images/cats/SU-005.jpg',
-    mapPosition: Offset(0.15, 0.90),
+    mapPosition: const Offset(0.15, 0.90),
   ),
   Cat(
     id: 'SU-006',
     name: 'Pamuk',
     zone: 'Library',
-    lastSeen: 'yesterday',
+    lastSeen: _now.subtract(const Duration(hours: 26)),
+    lastSeenPlace: 'Library',
     photo: 'https://raw.githubusercontent.com/rrafet/catlas/main/docs/images/SU-006.jpg',
-    mapPosition: Offset(0.30, 0.70),
+    mapPosition: const Offset(0.30, 0.70),
   ),
 ];
 
