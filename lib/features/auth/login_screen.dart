@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 
+import '../../data/session.dart';
 import '../../data/validators.dart';
 import '../../theme/app_spacing.dart';
 import '../../theme/app_text_styles.dart';
@@ -29,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _submit() {
     if (!_formKey.currentState!.validate()) return;
+    signedInEmail = _emailController.text.trim();
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const JoinScreen()),

@@ -7,5 +7,6 @@ class AppColors {
   static const Color onPrimary = Color(0xFFFFFFFF);
   static const Color divider = Color(0xFFDDDDDB);
   static const Color accent = Color(0xFF9C7418);
+  static const Color needsHelp = Color(0xFF8B4A2B);
   static const Color error = Color(0xFFC62828);
 }

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'cat.dart';
+import 'report.dart';
 import 'station.dart';
 
 const String joinCode = 'SUCATS';
@@ -124,5 +125,26 @@ final List<Station> placeholderStations = [
     waterHours: 0,
     foodBy: 'Ecem · today 07:30',
     waterBy: 'Cansu · today 15:30',
+  ),
+];
+
+final List<Report> placeholderReports = [
+  Report(
+    id: 'RP-001',
+    catName: 'Ebru',
+    summary: 'Limping',
+    description: 'Limping a little on her front left leg, still eating fine.',
+    place: 'A6',
+    reportedAt: _now.subtract(const Duration(hours: 3)),
+    photo: 'assets/images/cats/SU-002.jpg',
+  ),
+  Report(
+    id: 'RP-002',
+    catName: null,
+    summary: 'Eye infection',
+    description: 'Grey tabby with a watery eye, seems a bit weak.',
+    place: 'Dorm A Courtyard',
+    reportedAt: _now.subtract(const Duration(hours: 26)),
+    photo: 'assets/images/cats/SU-007.jpg',
   ),
 ];

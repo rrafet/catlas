@@ -8,4 +8,6 @@ class AppSpacing {
   static const double buttonPaddingVertical = 18;
   static const double radius = 12;
   static const double thumbnail = 64;
+  static const double smallThumbnail = 40;
+  static const double photoTile = 88;
 }

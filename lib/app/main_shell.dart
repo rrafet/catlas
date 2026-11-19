@@ -21,12 +21,12 @@ class _MainShellState extends State<MainShell> {
     return Scaffold(
       body: IndexedStack(
         index: _selectedIndex,
-        children: const [
-          HomeScreen(),
-          CatsScreen(),
-          MapScreen(),
-          StationsScreen(),
-          NeedsHelpScreen(),
+        children: [
+          HomeScreen(onSeeAllReports: () => setState(() => _selectedIndex = 4)),
+          const CatsScreen(),
+          const MapScreen(),
+          const StationsScreen(),
+          const NeedsHelpScreen(),
         ],
       ),
       bottomNavigationBar: Column(
