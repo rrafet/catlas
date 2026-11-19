@@ -8,6 +8,8 @@ class Station {
     required this.mapPosition,
     required this.foodHours,
     required this.waterHours,
+    required this.foodBy,
+    required this.waterBy,
   });
 
   final String id;
@@ -18,4 +20,6 @@ class Station {
   // Hours since the last logged refill.
   int foodHours;
   int waterHours;
+  String foodBy;
+  String waterBy;
 }

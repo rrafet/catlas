@@ -1,10 +1,12 @@
 import 'package:material_ui/material_ui.dart';
 
 import '../../data/placeholder_data.dart';
+import '../../data/station.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_spacing.dart';
 import '../../theme/app_text_styles.dart';
 import '../../widgets/hours_text.dart';
+import 'station_detail_screen.dart';
 
 class StationsScreen extends StatefulWidget {
   const StationsScreen({super.key});
@@ -15,6 +17,17 @@ class StationsScreen extends StatefulWidget {
 
 class _StationsScreenState extends State<StationsScreen> {
   static const double _timerWidth = 64;
+
+  Future<void> _openStation(Station station) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => StationDetailScreen(station: station),
+      ),
+    );
+    // A refill logged on the detail screen changes the timers.
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,28 +68,36 @@ class _StationsScreenState extends State<StationsScreen> {
             const Divider(),
             // List
             for (final station in placeholderStations) ...[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: AppSpacing.small),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(station.name, style: AppTextStyles.itemTitle),
-                          Text(station.area, style: AppTextStyles.itemSubtitle),
-                        ],
+              InkWell(
+                onTap: () => _openStation(station),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: AppSpacing.small,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(station.name, style: AppTextStyles.itemTitle),
+                            Text(
+                              station.area,
+                              style: AppTextStyles.itemSubtitle,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: _timerWidth,
-                      child: HoursText(hours: station.foodHours),
-                    ),
-                    SizedBox(
-                      width: _timerWidth,
-                      child: HoursText(hours: station.waterHours),
-                    ),
-                  ],
+                      SizedBox(
+                        width: _timerWidth,
+                        child: HoursText(hours: station.foodHours),
+                      ),
+                      SizedBox(
+                        width: _timerWidth,
+                        child: HoursText(hours: station.waterHours),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const Divider(color: AppColors.divider),

@@ -2,12 +2,12 @@ import 'package:material_ui/material_ui.dart';
 
 import '../../data/cat.dart';
 import '../../data/placeholder_data.dart';
-import '../../data/station.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_spacing.dart';
 import '../../theme/app_text_styles.dart';
 import '../../widgets/campus_map.dart';
 import '../../widgets/cat_photo.dart';
+import '../stations/station_detail_screen.dart';
 
 class MapScreen extends StatelessWidget {
   const MapScreen({super.key});
@@ -53,23 +53,6 @@ class MapScreen extends StatelessWidget {
     );
   }
 
-  void _showStation(BuildContext context, Station station) {
-    _showPreview(
-      context,
-      Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(station.name, style: AppTextStyles.heading),
-          const SizedBox(height: AppSpacing.small),
-          Text('Food: ${station.foodHours} h', style: AppTextStyles.body),
-          const SizedBox(height: AppSpacing.tiny),
-          Text('Water: ${station.waterHours} h', style: AppTextStyles.body),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +75,13 @@ class MapScreen extends StatelessWidget {
                     MapMarker(
                       position: station.mapPosition,
                       child: GestureDetector(
-                        onTap: () => _showStation(context, station),
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                StationDetailScreen(station: station),
+                          ),
+                        ),
                         child: const CircleAvatar(
                           radius: 14,
                           backgroundColor: AppColors.accent,

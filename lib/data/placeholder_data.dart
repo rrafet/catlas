@@ -82,6 +82,8 @@ final List<Station> placeholderStations = [
     mapPosition: const Offset(0.12, 0.76),
     foodHours: 22,
     waterHours: 9,
+    foodBy: 'Ecem · today 07:30',
+    waterBy: 'Cansu · today 15:30',
   ),
   Station(
     id: 'ST-002',
@@ -90,6 +92,8 @@ final List<Station> placeholderStations = [
     mapPosition: const Offset(0.86, 0.66),
     foodHours: 18,
     waterHours: 20,
+    foodBy: 'Ecem · today 07:30',
+    waterBy: 'Cansu · today 15:30',
   ),
   Station(
     id: 'ST-003',
@@ -98,6 +102,8 @@ final List<Station> placeholderStations = [
     mapPosition: const Offset(0.78, 0.42),
     foodHours: 14,
     waterHours: 6,
+    foodBy: 'Ecem · today 07:30',
+    waterBy: 'Cansu · today 15:30',
   ),
   Station(
     id: 'ST-004',
@@ -106,6 +112,8 @@ final List<Station> placeholderStations = [
     mapPosition: const Offset(0.30, 0.88),
     foodHours: 7,
     waterHours: 3,
+    foodBy: 'Ecem · today 07:30',
+    waterBy: 'Cansu · today 15:30',
   ),
   Station(
     id: 'ST-005',
@@ -114,5 +122,7 @@ final List<Station> placeholderStations = [
     mapPosition: const Offset(0.55, 0.25),
     foodHours: 0,
     waterHours: 0,
+    foodBy: 'Ecem · today 07:30',
+    waterBy: 'Cansu · today 15:30',
   ),
 ];
