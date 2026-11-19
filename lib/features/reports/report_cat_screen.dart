@@ -11,7 +11,9 @@ import '../../widgets/primary_button.dart';
 import '../map/pick_location_screen.dart';
 
 class ReportCatScreen extends StatefulWidget {
-  const ReportCatScreen({super.key});
+  const ReportCatScreen({super.key, this.initialCat});
+
+  final Cat? initialCat;
 
   @override
   State<ReportCatScreen> createState() => _ReportCatScreenState();
@@ -25,6 +27,12 @@ class _ReportCatScreenState extends State<ReportCatScreen> {
   Cat? _cat;
   String? _location;
   bool _submitted = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _cat = widget.initialCat;
+  }
 
   @override
   void dispose() {

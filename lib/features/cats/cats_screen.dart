@@ -6,6 +6,7 @@ import '../../theme/app_colors.dart';
 import '../../theme/app_spacing.dart';
 import '../../theme/app_text_styles.dart';
 import '../../widgets/cat_card.dart';
+import 'cat_profile_screen.dart';
 
 const List<String> _zones = ['All', 'FENS', 'FASS', 'Library', 'Dorms'];
 
@@ -112,7 +113,15 @@ class _CatsScreenState extends State<CatsScreen> {
                 direction: DismissDirection.endToStart,
                 background: const _RemoveBackground(),
                 onDismissed: (_) => _removeCat(cat),
-                child: CatCard(cat: cat),
+                child: CatCard(
+                  cat: cat,
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CatProfileScreen(cat: cat),
+                    ),
+                  ),
+                ),
               ),
           ],
         ),
