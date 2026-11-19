@@ -4,15 +4,35 @@ import '../../data/cat.dart';
 import '../../theme/app_spacing.dart';
 import '../../theme/app_text_styles.dart';
 import '../../widgets/cat_photo.dart';
+import '../../widgets/primary_button.dart';
 import '../reports/report_cat_screen.dart';
+import '../sightings/new_sighting_screen.dart';
 
-class CatProfileScreen extends StatelessWidget {
+class CatProfileScreen extends StatefulWidget {
   const CatProfileScreen({super.key, required this.cat});
 
   final Cat cat;
 
   @override
+  State<CatProfileScreen> createState() => _CatProfileScreenState();
+}
+
+class _CatProfileScreenState extends State<CatProfileScreen> {
+  Future<void> _logSighting() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => NewSightingScreen(initialCat: widget.cat),
+      ),
+    );
+    // Show the new last seen time if the sighting updated it.
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final cat = widget.cat;
     final photoSize =
         MediaQuery.sizeOf(context).width - AppSpacing.pagePadding * 2;
 
@@ -46,21 +66,29 @@ class CatProfileScreen extends StatelessWidget {
             // Actions
             Padding(
               padding: const EdgeInsets.all(AppSpacing.pagePadding),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: TextButton(
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      fullscreenDialog: true,
-                      builder: (context) => ReportCatScreen(initialCat: cat),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: PrimaryButton(
+                      label: 'I saw this cat',
+                      onPressed: _logSighting,
                     ),
                   ),
-                  child: const Text(
-                    'Report a problem',
-                    style: TextStyle(decoration: TextDecoration.underline),
+                  const SizedBox(width: AppSpacing.medium),
+                  TextButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        fullscreenDialog: true,
+                        builder: (context) => ReportCatScreen(initialCat: cat),
+                      ),
+                    ),
+                    child: const Text(
+                      'Report a problem',
+                      style: TextStyle(decoration: TextDecoration.underline),
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           ],

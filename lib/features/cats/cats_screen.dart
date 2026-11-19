@@ -57,6 +57,15 @@ class _CatsScreenState extends State<CatsScreen> {
       ..showSnackBar(SnackBar(content: Text('${cat.name} removed')));
   }
 
+  Future<void> _openProfile(Cat cat) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CatProfileScreen(cat: cat)),
+    );
+    // A sighting logged from the profile may have changed "Seen ...".
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final visibleCats = _visibleCats;
@@ -113,15 +122,7 @@ class _CatsScreenState extends State<CatsScreen> {
                 direction: DismissDirection.endToStart,
                 background: const _RemoveBackground(),
                 onDismissed: (_) => _removeCat(cat),
-                child: CatCard(
-                  cat: cat,
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CatProfileScreen(cat: cat),
-                    ),
-                  ),
-                ),
+                child: CatCard(cat: cat, onTap: () => _openProfile(cat)),
               ),
           ],
         ),
