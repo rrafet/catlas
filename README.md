@@ -32,6 +32,18 @@ The initial cat records and photos will be imported from our existing campus cat
 - `geolocator` for device location
 - Firebase Admin SDK for a one-time script to import the existing cat records and photos
 
+## Running the App
+
+**Flutter version:** 3.50.1 (Dart 3.14.0)
+
+1. Clone the repository: `git clone https://github.com/rrafet/catlas.git`
+2. Go into the project folder: `cd catlas`
+3. Install dependencies: `flutter pub get`
+4. Start an Android emulator or iOS simulator
+5. Run the app: `flutter run`
+
+The app currently uses placeholder data, and login and sign-up are UI-only. To get past them, enter any email address and a password of at least 8 characters, then use the join code `SUCATS`.
+
 ## Group Information
 
 **Course:** CS310 Mobile Application Development  
