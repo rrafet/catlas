@@ -16,6 +16,7 @@ import '../../widgets/primary_button.dart';
 import '../../widgets/section_header.dart';
 import '../cats/cat_profile_screen.dart';
 import '../reports/report_cat_screen.dart';
+import '../reports/report_detail_screen.dart';
 import '../sightings/new_sighting_screen.dart';
 import '../stations/station_detail_screen.dart';
 
@@ -38,6 +39,17 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
     setState(() {});
+  }
+
+  Future<void> _openReport(Report report) async {
+    final resolved = await Navigator.push<bool>(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ReportDetailScreen(report: report),
+      ),
+    );
+    if (resolved != true || !mounted) return;
+    setState(() => placeholderReports.remove(report));
   }
 
   @override
@@ -93,7 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   for (final report in placeholderReports)
-                    _ReportRow(report: report),
+                    _ReportRow(
+                      report: report,
+                      onTap: () => _openReport(report),
+                    ),
                   const SizedBox(height: AppSpacing.large),
                   // Check next
                   const SectionHeader(
@@ -166,15 +181,18 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class _ReportRow extends StatelessWidget {
-  const _ReportRow({required this.report});
+  const _ReportRow({required this.report, required this.onTap});
 
   final Report report;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
+        InkWell(
+          onTap: onTap,
+          child: Padding(
           padding: const EdgeInsets.symmetric(vertical: AppSpacing.small),
           child: Row(
             children: [
@@ -211,6 +229,7 @@ class _ReportRow extends StatelessWidget {
               CatPhoto(photo: report.photo, size: AppSpacing.smallThumbnail),
             ],
           ),
+        ),
         ),
         const Divider(),
       ],
