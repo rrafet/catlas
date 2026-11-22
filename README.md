@@ -39,7 +39,7 @@ The initial cat records and photos will be imported from our existing campus cat
 1. Clone the repository: `git clone https://github.com/rrafet/catlas.git`
 2. Go into the project folder: `cd catlas`
 3. Install dependencies: `flutter pub get`
-4. Start an Android emulator or iOS simulator
+4. Start an Android emulator
 5. Run the app: `flutter run`
 
 The app currently uses placeholder data, and login and sign-up are UI-only. To get past them, enter any email address and a password of at least 8 characters, then use the join code `SUCATS`.
