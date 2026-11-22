@@ -23,8 +23,8 @@ class _MainShellState extends State<MainShell> {
         index: _selectedIndex,
         children: [
           HomeScreen(onSeeAllReports: () => setState(() => _selectedIndex = 4)),
-          const CatsScreen(),
-          const MapScreen(),
+          CatsScreen(),
+          MapScreen(),
           const StationsScreen(),
           const NeedsHelpScreen(),
         ],

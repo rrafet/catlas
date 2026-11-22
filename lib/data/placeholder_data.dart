@@ -16,6 +16,17 @@ const Map<String, Offset> campusSpots = {
   'SL': Offset(0.06, 0.82),
 };
 
+const List<String> catZones = ['FENS', 'FASS', 'Library', 'Dorms'];
+
+const List<String> catColours = [
+  'Tabby',
+  'Ginger',
+  'Black',
+  'White',
+  'Calico',
+  'Grey',
+];
+
 final DateTime _now = DateTime.now();
 
 final List<Cat> placeholderCats = [
@@ -23,6 +34,8 @@ final List<Cat> placeholderCats = [
     id: 'SU-001',
     name: 'Balım',
     zone: 'Library',
+    colour: 'White',
+    description: 'White with black patches. Likes napping on the grass.',
     lastSeen: _now.subtract(const Duration(minutes: 40)),
     lastSeenPlace: 'Library',
     photo: 'assets/images/cats/SU-001.jpg',
@@ -32,6 +45,8 @@ final List<Cat> placeholderCats = [
     id: 'SU-002',
     name: 'Ebru',
     zone: 'FENS',
+    colour: 'Ginger',
+    description: 'Sweet but a bit shy around crowds.',
     lastSeen: _now.subtract(const Duration(hours: 2)),
     lastSeenPlace: 'FENS',
     photo: 'assets/images/cats/SU-002.jpg',
@@ -41,6 +56,8 @@ final List<Cat> placeholderCats = [
     id: 'SU-003',
     name: 'Hero',
     zone: 'FASS',
+    colour: 'Ginger',
+    description: 'Very calm, usually stretched out on a warm radiator.',
     lastSeen: _now.subtract(const Duration(hours: 3)),
     lastSeenPlace: 'FASS',
     photo: 'assets/images/cats/SU-003.jpg',
@@ -50,6 +67,8 @@ final List<Cat> placeholderCats = [
     id: 'SU-004',
     name: 'Zeytin',
     zone: 'Dorms',
+    colour: 'White',
+    description: 'White with ginger patches. Curious and always on the move.',
     lastSeen: _now.subtract(const Duration(hours: 5)),
     lastSeenPlace: 'Dorms',
     photo: 'assets/images/cats/SU-004.jpg',
@@ -59,6 +78,8 @@ final List<Cat> placeholderCats = [
     id: 'SU-005',
     name: 'Köpük',
     zone: 'Dorms',
+    colour: 'Tabby',
+    description: 'Playful young tabby with a white chest.',
     lastSeen: _now.subtract(const Duration(hours: 8)),
     lastSeenPlace: 'Dorms',
     photo: 'assets/images/cats/SU-005.jpg',
@@ -68,6 +89,8 @@ final List<Cat> placeholderCats = [
     id: 'SU-006',
     name: 'Pamuk',
     zone: 'Library',
+    colour: 'Ginger',
+    description: 'Ginger and white. Friendly and easy to approach.',
     lastSeen: _now.subtract(const Duration(hours: 26)),
     lastSeenPlace: 'Library',
     photo: 'https://raw.githubusercontent.com/rrafet/catlas/main/docs/images/SU-006.jpg',

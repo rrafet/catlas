@@ -2,11 +2,12 @@ import 'package:material_ui/material_ui.dart';
 
 import '../../data/cat.dart';
 import '../../data/placeholder_data.dart';
-import '../../theme/app_colors.dart';
 import '../../theme/app_spacing.dart';
 import '../../theme/app_text_styles.dart';
 import '../../widgets/app_text_field.dart';
 import '../../widgets/cat_photo.dart';
+import '../../widgets/choice_row.dart';
+import '../../widgets/photo_box.dart';
 import '../../widgets/primary_button.dart';
 import '../map/pick_location_screen.dart';
 
@@ -126,15 +127,17 @@ class _ReportCatScreenState extends State<ReportCatScreen> {
                       const Text('Report a cat', style: AppTextStyles.title),
                       const SizedBox(height: AppSpacing.large),
                       // Photo
-                      _PhotoBox(
-                        hasPhoto: _hasPhoto,
+                      PhotoBox(
+                        photo: _hasPhoto
+                            ? 'assets/images/cats/SU-002.jpg'
+                            : null,
                         showError: _submitted && !_hasPhoto,
                         onAdd: () => setState(() => _hasPhoto = true),
                         onRemove: () => setState(() => _hasPhoto = false),
                       ),
                       const SizedBox(height: AppSpacing.large),
                       // Cat
-                      _ChoiceRow(
+                      ChoiceRow(
                         label: 'CAT  (optional)',
                         value: _cat?.name,
                         emptyText: 'Not linked to a cat',
@@ -142,7 +145,7 @@ class _ReportCatScreenState extends State<ReportCatScreen> {
                       ),
                       const SizedBox(height: AppSpacing.large),
                       // Location
-                      _ChoiceRow(
+                      ChoiceRow(
                         label: 'LOCATION',
                         value: _location,
                         emptyText: 'Not set',
@@ -175,139 +178,6 @@ class _ReportCatScreenState extends State<ReportCatScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _PhotoBox extends StatelessWidget {
-  const _PhotoBox({
-    required this.hasPhoto,
-    required this.showError,
-    required this.onAdd,
-    required this.onRemove,
-  });
-
-  final bool hasPhoto;
-  final bool showError;
-  final VoidCallback onAdd;
-  final VoidCallback onRemove;
-
-  @override
-  Widget build(BuildContext context) {
-    if (hasPhoto) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(AppSpacing.radius),
-            child: AspectRatio(
-              aspectRatio: 2,
-              child: Image.asset(
-                'assets/images/cats/SU-002.jpg',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          TextButton(onPressed: onRemove, child: const Text('Replace photo')),
-        ],
-      );
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        InkWell(
-          onTap: onAdd,
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(AppSpacing.pagePadding),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: showError ? AppColors.error : AppColors.divider,
-              ),
-              borderRadius: BorderRadius.circular(AppSpacing.radius),
-            ),
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(Icons.photo_camera_outlined),
-                SizedBox(height: AppSpacing.medium),
-                Text('Add a photo', style: AppTextStyles.itemTitle),
-                SizedBox(height: AppSpacing.tiny),
-                Text(
-                  'Take one now or choose from your gallery',
-                  style: AppTextStyles.itemSubtitle,
-                ),
-              ],
-            ),
-          ),
-        ),
-        if (showError) ...[
-          const SizedBox(height: AppSpacing.small),
-          const Text(
-            'A photo helps volunteers find the right cat.',
-            style: TextStyle(color: AppColors.error),
-          ),
-        ],
-      ],
-    );
-  }
-}
-
-class _ChoiceRow extends StatelessWidget {
-  const _ChoiceRow({
-    required this.label,
-    required this.value,
-    required this.emptyText,
-    required this.onPressed,
-    this.errorText,
-  });
-
-  final String label;
-  final String? value;
-  final String emptyText;
-  final VoidCallback onPressed;
-  final String? errorText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: AppTextStyles.label),
-        Container(
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: errorText == null ? AppColors.divider : AppColors.error,
-              ),
-            ),
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  value ?? emptyText,
-                  style: value == null
-                      ? AppTextStyles.itemSubtitle
-                      : AppTextStyles.body,
-                ),
-              ),
-              TextButton(
-                onPressed: onPressed,
-                child: Text(
-                  value == null ? 'Choose' : 'Change',
-                  style: const TextStyle(decoration: TextDecoration.underline),
-                ),
-              ),
-            ],
-          ),
-        ),
-        if (errorText != null) ...[
-          const SizedBox(height: AppSpacing.small),
-          Text(errorText!, style: const TextStyle(color: AppColors.error)),
-        ],
-      ],
     );
   }
 }

@@ -1,12 +1,14 @@
 import 'package:material_ui/material_ui.dart';
 
 import '../../data/cat.dart';
+import '../../data/session.dart';
 import '../../theme/app_spacing.dart';
 import '../../theme/app_text_styles.dart';
 import '../../widgets/cat_photo.dart';
 import '../../widgets/primary_button.dart';
 import '../reports/report_cat_screen.dart';
 import '../sightings/new_sighting_screen.dart';
+import 'add_edit_cat_screen.dart';
 
 class CatProfileScreen extends StatefulWidget {
   const CatProfileScreen({super.key, required this.cat});
@@ -26,7 +28,19 @@ class _CatProfileScreenState extends State<CatProfileScreen> {
         builder: (context) => NewSightingScreen(initialCat: widget.cat),
       ),
     );
-    // Show the new last seen time if the sighting updated it.
+    if (!mounted) return;
+    setState(() {});
+  }
+
+  Future<void> _edit() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => AddEditCatScreen(cat: widget.cat),
+      ),
+    );
+    if (!mounted) return;
     setState(() {});
   }
 
@@ -37,7 +51,12 @@ class _CatProfileScreenState extends State<CatProfileScreen> {
         MediaQuery.sizeOf(context).width - AppSpacing.pagePadding * 2;
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          if (isAdmin) TextButton(onPressed: _edit, child: const Text('Edit')),
+        ],
+        actionsPadding: const EdgeInsets.only(right: AppSpacing.small),
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -54,6 +73,10 @@ class _CatProfileScreenState extends State<CatProfileScreen> {
                     Text(cat.name, style: AppTextStyles.title),
                     const SizedBox(height: AppSpacing.tiny),
                     Text(cat.zone, style: AppTextStyles.itemSubtitle),
+                    if (cat.description.isNotEmpty) ...[
+                      const SizedBox(height: AppSpacing.medium),
+                      Text(cat.description, style: AppTextStyles.body),
+                    ],
                     const SizedBox(height: AppSpacing.medium),
                     Text(
                       'Last seen ${timeAgo(cat.lastSeen)} near ${cat.lastSeenPlace}.',

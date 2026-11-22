@@ -5,3 +5,7 @@ String get displayName {
   if (name.isEmpty) return '';
   return name[0].toUpperCase() + name.substring(1);
 }
+
+String role = 'Admin';
+
+bool get isAdmin => role == 'Admin';

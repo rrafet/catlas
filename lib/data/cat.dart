@@ -5,6 +5,8 @@ class Cat {
     required this.id,
     required this.name,
     required this.zone,
+    required this.colour,
+    required this.description,
     required this.lastSeen,
     required this.lastSeenPlace,
     required this.photo,
@@ -12,9 +14,11 @@ class Cat {
   });
 
   final String id;
-  final String name;
-  final String zone;
-  final String photo;
+  String name;
+  String zone;
+  String colour;
+  String description;
+  String photo;
 
   // Updated when someone logs a newer sighting.
   DateTime lastSeen;

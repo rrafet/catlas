@@ -15,6 +15,7 @@ import '../../widgets/hours_text.dart';
 import '../../widgets/primary_button.dart';
 import '../../widgets/section_header.dart';
 import '../cats/cat_profile_screen.dart';
+import '../profile/profile_screen.dart';
 import '../reports/report_cat_screen.dart';
 import '../reports/report_detail_screen.dart';
 import '../sightings/new_sighting_screen.dart';
@@ -38,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context) => screen,
       ),
     );
+    if (!mounted) return;
     setState(() {});
   }
 
@@ -48,8 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context) => ReportDetailScreen(report: report),
       ),
     );
-    if (resolved != true || !mounted) return;
-    setState(() => placeholderReports.remove(report));
+    if (!mounted) return;
+    setState(() {
+      if (resolved == true) placeholderReports.remove(report);
+    });
   }
 
   @override
@@ -81,12 +85,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: AppTextStyles.label,
                         ),
                       ),
-                      CircleAvatar(
-                        backgroundColor: AppColors.divider,
-                        foregroundColor: AppColors.textPrimary,
-                        child: displayName.isEmpty
-                            ? const Icon(Icons.person_outline, size: 20)
-                            : Text(displayName[0]),
+                      GestureDetector(
+                        onTap: () => _open(const ProfileScreen()),
+                        child: CircleAvatar(
+                          backgroundColor: AppColors.divider,
+                          foregroundColor: AppColors.textPrimary,
+                          child: displayName.isEmpty
+                              ? const Icon(Icons.person_outline, size: 20)
+                              : Text(displayName[0]),
+                        ),
                       ),
                     ],
                   ),

@@ -2,13 +2,13 @@ import 'package:material_ui/material_ui.dart';
 
 import '../../data/cat.dart';
 import '../../data/placeholder_data.dart';
+import '../../data/session.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_spacing.dart';
 import '../../theme/app_text_styles.dart';
 import '../../widgets/cat_card.dart';
+import 'add_edit_cat_screen.dart';
 import 'cat_profile_screen.dart';
-
-const List<String> _zones = ['All', 'FENS', 'FASS', 'Library', 'Dorms'];
 
 String _normalize(String text) {
   const replacements = {
@@ -38,20 +38,19 @@ class CatsScreen extends StatefulWidget {
 }
 
 class _CatsScreenState extends State<CatsScreen> {
-  final List<Cat> _cats = List.of(placeholderCats);
   String _query = '';
   String _selectedZone = 'All';
 
   List<Cat> get _visibleCats {
     final query = _normalize(_query);
-    return _cats
+    return placeholderCats
         .where((cat) => _selectedZone == 'All' || cat.zone == _selectedZone)
         .where((cat) => _normalize(cat.name).contains(query))
         .toList();
   }
 
   void _removeCat(Cat cat) {
-    setState(() => _cats.remove(cat));
+    setState(() => placeholderCats.remove(cat));
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text('${cat.name} removed')));
@@ -62,7 +61,19 @@ class _CatsScreenState extends State<CatsScreen> {
       context,
       MaterialPageRoute(builder: (context) => CatProfileScreen(cat: cat)),
     );
-    // A sighting logged from the profile may have changed "Seen ...".
+    if (!mounted) return;
+    setState(() {});
+  }
+
+  Future<void> _addCat() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => const AddEditCatScreen(),
+      ),
+    );
+    if (!mounted) return;
     setState(() {});
   }
 
@@ -75,7 +86,16 @@ class _CatsScreenState extends State<CatsScreen> {
           padding: const EdgeInsets.all(AppSpacing.pagePadding),
           children: [
             // Header
-            const Text('Cats', style: AppTextStyles.title),
+            Row(
+              children: [
+                const Expanded(child: Text('Cats', style: AppTextStyles.title)),
+                if (isAdmin)
+                  TextButton(
+                    onPressed: _addCat,
+                    child: const Text('+ Add cat'),
+                  ),
+              ],
+            ),
             const SizedBox(height: AppSpacing.large),
             // Search
             TextField(
@@ -91,7 +111,7 @@ class _CatsScreenState extends State<CatsScreen> {
               spacing: AppSpacing.medium,
               runSpacing: AppSpacing.small,
               children: [
-                for (final zone in _zones)
+                for (final zone in ['All', ...catZones])
                   _ZoneTab(
                     label: zone,
                     selected: zone == _selectedZone,
@@ -119,7 +139,9 @@ class _CatsScreenState extends State<CatsScreen> {
             for (final cat in visibleCats)
               Dismissible(
                 key: ValueKey(cat.id),
-                direction: DismissDirection.endToStart,
+                direction: isAdmin
+                    ? DismissDirection.endToStart
+                    : DismissDirection.none,
                 background: const _RemoveBackground(),
                 onDismissed: (_) => _removeCat(cat),
                 child: CatCard(cat: cat, onTap: () => _openProfile(cat)),
